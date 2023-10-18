@@ -6,7 +6,6 @@ import { SettingDrawer } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history } from '@umijs/max';
 import defaultSettings from '../config/initialSetting';
-import * as request from './httpConfig';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import { AvatarDropdown, AvatarName } from './components/RightContent/AvatarDropdown';
 const loginPath = '/user/login';
@@ -92,7 +91,7 @@ const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>, 这里是没有权限访问的时候需不需要加这个页面，看你们项目需求
     // 增加一个 loading 的状态
-    childrenRender: (children) => {
+    childrenRender: children => {
       return (
         <>
           {children}
@@ -114,9 +113,13 @@ const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   };
 };
 
+const onRouteChange = (plugin: any): void => {
+  // console.log(plugin);
+
+}
 
 export {
-  request,
   layout,
   getInitialState,
+  onRouteChange,
 }

@@ -37,9 +37,7 @@ const LoginMessage: React.FunctionComponent<{
 }> = ({ content }) => {
   return (
     <Alert
-      style={{
-        marginBottom: 24,
-      }}
+      style={{ marginBottom: 24 }}
       message={content}
       type="error"
       showIcon
@@ -78,7 +76,7 @@ const Login: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (values: API.LoginParams) => {
+  const clickHooksLogin = async (values: API.LoginParams) => {
     try {
       // 登录
       const msg = await login({ ...values, type });
@@ -93,7 +91,6 @@ const Login: React.FC = () => {
         history.push(urlParams.get('redirect') || '/');
         return;
       }
-      console.log(msg);
       // 如果失败去设置用户错误信息
       setUserLoginState(msg);
     } catch (error) {
@@ -101,7 +98,6 @@ const Login: React.FC = () => {
         id: 'pages.login.failure',
         defaultMessage: '登录失败，请重试！',
       });
-      console.log(error);
       message.error(defaultLoginFailureMessage);
     }
   };
@@ -133,14 +129,10 @@ const Login: React.FC = () => {
           logo={<img alt="logo" src="/logo.svg" width={800} />}
           title="MycReactAdminTemplate"
           subTitle={`mycReactAdminTemplate`}
-          initialValues={{
-            autoLogin: true,
-          }}
+          initialValues={{ autoLogin: true }}
           actions={[ // 底部可以增加其它东西
           ]}
-          onFinish={async (values) => {
-            await handleSubmit(values as API.LoginParams);
-          }}
+          onFinish={values => clickHooksLogin(values)}
         >
           <Tabs
             activeKey={type}

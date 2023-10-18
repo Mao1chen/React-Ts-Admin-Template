@@ -1,6 +1,3 @@
-// @ts-ignore
-/* eslint-disable */
-
 declare namespace API {
   type CurrentUser = {
     name?: string;
@@ -84,7 +81,7 @@ declare namespace API {
     success?: boolean;
   };
 
-  type NoticeIconItemType = 'notification' | 'message' | 'event';
+  type NoticeIconItemType = "notification" | "message" | "event";
 
   type NoticeIconItem = {
     id?: string;
