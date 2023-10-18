@@ -18,7 +18,7 @@ type initialStateType = {
 }
 
 const getInitialState = async (): Promise<initialStateType> => {
-  const fetchUserInfo = async (): Promise<any> => {
+  const fetchUserInfo = async (): Promise<API.CurrentUser | undefined> => {
     try {
       const msg = await queryCurrentUser({
         skipErrorHandler: true,
